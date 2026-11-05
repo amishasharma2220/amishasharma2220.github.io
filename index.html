@@ -313,6 +313,94 @@ html{scrollbar-color:#ff2e88 var(--blush)}
 .ink2::after{content:"";display:block;height:2px;margin-top:2px;background:linear-gradient(90deg,#f6b3c7,transparent)}
 @media (prefers-reduced-motion:reduce){.lc.journal.writing .ink2{animation:none}}
 
+/* reading express: moving train with mini-me inside */
+@media (max-width:900px){.life .lc.books{grid-column:auto}}
+.life .lc.books{display:block;padding:0;background:#5a1f3a;grid-template-columns:none}
+.books-head{padding:clamp(22px,3vw,34px) clamp(22px,3vw,34px) 8px;display:grid;gap:10px;max-width:760px}
+.ride{position:relative;height:clamp(300px,30vw,360px);overflow:hidden;background:linear-gradient(180deg,#ffb8a3 0%,#ffd9c2 45%,#ffe6ee 100%);margin:10px 0 0}
+.rsun{position:absolute;right:14%;top:12%;width:60px;height:60px;border-radius:50%;background:#fff5c9;box-shadow:0 0 60px 10px #fff3c4}
+.rl{position:absolute;left:0;right:0;background-repeat:repeat-x;animation:rscroll linear infinite;will-change:background-position}
+.r-clouds{top:6%;height:30%;background-size:640px 100%;animation-duration:60s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='100'%3E%3Cg fill='%23fff' opacity='.8'%3E%3Cellipse cx='90' cy='40' rx='50' ry='16'/%3E%3Cellipse cx='120' cy='32' rx='30' ry='14'/%3E%3Cellipse cx='420' cy='60' rx='60' ry='14'/%3E%3Cellipse cx='455' cy='52' rx='30' ry='12'/%3E%3C/g%3E%3C/svg%3E")}
+.r-hills{bottom:34%;height:40%;background-size:700px 100%;animation-duration:30s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='700' height='160' preserveAspectRatio='none'%3E%3Cpath d='M0 120 Q90 30 190 100 T380 80 T560 105 T700 120 V160 H0Z' fill='%23f3a1b8'/%3E%3Cpath d='M0 140 Q120 90 250 130 T520 120 T700 140 V160 H0Z' fill='%23e98aa7'/%3E%3C/svg%3E")}
+.r-trees{bottom:28%;height:22%;background-size:420px 100%;animation-duration:10s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='80' preserveAspectRatio='none'%3E%3Crect y='62' width='420' height='18' fill='%23c86a8c'/%3E%3Cg fill='%23a04a6e'%3E%3Ccircle cx='40' cy='44' r='20'/%3E%3Ccircle cx='62' cy='50' r='14'/%3E%3Ccircle cx='230' cy='40' r='24'/%3E%3Ccircle cx='330' cy='50' r='15'/%3E%3C/g%3E%3Cg fill='%237a2a4d'%3E%3Crect x='38' y='50' width='5' height='14'/%3E%3Crect x='228' y='48' width='5' height='16'/%3E%3Crect x='328' y='54' width='4' height='10'/%3E%3C/g%3E%3C/svg%3E")}
+.r-poles{bottom:28%;top:0;background-size:360px 100%;animation-duration:3s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='300' preserveAspectRatio='none'%3E%3Crect x='30' y='40' width='5' height='260' fill='%235a1f3a' opacity='.45'/%3E%3Crect x='20' y='46' width='26' height='4' fill='%235a1f3a' opacity='.45'/%3E%3Cpath d='M0 54 Q180 86 360 54' stroke='%235a1f3a' stroke-opacity='.35' stroke-width='2' fill='none'/%3E%3C/svg%3E")}
+@keyframes rscroll{from{background-position-x:0}to{background-position-x:-700px}}
+.r-clouds{animation-name:rsc1}@keyframes rsc1{to{background-position-x:-640px}}
+.r-trees{animation-name:rsc2}@keyframes rsc2{to{background-position-x:-420px}}
+.r-poles{animation-name:rsc3}@keyframes rsc3{to{background-position-x:-360px}}
+.rtrack{position:absolute;left:0;right:0;bottom:0;height:28%;background:linear-gradient(180deg,#8a3e5e 0 8px,#6e2c49 8px);overflow:hidden}
+.rtrack::before{content:"";position:absolute;left:0;right:0;top:12px;height:14px;background:repeating-linear-gradient(90deg,#3b1327 0 10px,transparent 10px 34px);animation:sleep .5s linear infinite}
+.rtrack::after{content:"";position:absolute;left:0;right:0;top:10px;height:4px;background:#d6b2c0;box-shadow:0 12px 0 #d6b2c0}
+@keyframes sleep{to{transform:translateX(-34px)}}
+.train{position:absolute;right:3%;bottom:calc(28% - 4px);display:flex;align-items:flex-end;gap:5px;animation:bob .5s ease-in-out infinite alternate}
+@keyframes bob{to{transform:translateY(-2px)}}
+.bcar,.coach{position:relative;flex:none;border-radius:10px 10px 4px 4px;box-shadow:inset 0 -8px 0 rgb(0 0 0 / .18)}
+.bcar{width:112px;height:74px;background:var(--c);color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px 8px 16px;font-size:.74rem;font-weight:800;line-height:1.15}
+.bcar span{background:rgb(255 255 255 / .14);border-radius:6px;padding:4px 6px}
+.bcar i,.coach i,.engine i{position:absolute;bottom:-9px;width:18px;height:18px;border-radius:50%;background:#1c0b14;border:3px solid #ffd16b;animation:spin .6s linear infinite}
+.bcar i:first-of-type,.coach i:first-of-type{left:12px}.bcar i:last-of-type,.coach i:last-of-type{right:12px}
+.bcar i::after,.coach i::after,.engine i::after{content:"";position:absolute;left:50%;top:2px;bottom:2px;width:2px;margin-left:-1px;background:#ffd16b}
+@keyframes spin{to{transform:rotate(360deg)}}
+.coach{width:190px;height:150px;background:linear-gradient(180deg,#ff4f9a,#d81b6a);padding:12px 14px 22px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.coach::before{content:"";position:absolute;left:-6px;right:-6px;top:-10px;height:14px;border-radius:8px;background:#9e2650}
+.cwin{position:relative;width:100%;height:96px;border-radius:12px;overflow:hidden;background:linear-gradient(180deg,#fff3e8,#ffd9e4);border:4px solid #fff;box-shadow:inset 0 0 0 2px rgb(0 0 0 / .05)}
+.cwin canvas.mini{position:absolute;left:50%;top:-6px;transform:translateX(-50%);width:118px;max-width:none;height:auto;aspect-ratio:5/6;margin:0}
+.coach b{font-size:.78rem;font-weight:800;color:#fff;letter-spacing:.1em;text-transform:uppercase}
+.engine{position:relative;flex:none;width:150px;height:118px}
+.engine .cab{position:absolute;left:0;bottom:0;width:62px;height:118px;border-radius:10px 10px 4px 4px;background:#ffd16b;box-shadow:inset 0 -8px 0 rgb(0 0 0 / .15)}
+.engine .cab::before{content:"";position:absolute;left:12px;top:14px;width:38px;height:30px;border-radius:6px;background:#fff6e0;border:3px solid #3b1327}
+.engine .nose{position:absolute;left:58px;bottom:0;width:92px;height:72px;border-radius:6px 40px 6px 4px;background:#3b1327;box-shadow:inset 0 -8px 0 rgb(0 0 0 / .25)}
+.engine .lamp{position:absolute;right:6px;bottom:40px;width:12px;height:12px;border-radius:50%;background:#fff3c4;box-shadow:0 0 18px 6px rgb(255 243 196 / .8)}
+.engine .chim{position:absolute;left:96px;bottom:70px;width:20px;height:30px;border-radius:4px 4px 0 0;background:#3b1327}
+.engine i:nth-of-type(1){left:10px}.engine i:nth-of-type(2){left:70px}.engine i:nth-of-type(3){left:114px}
+.puff{position:absolute;left:98px;bottom:96px;width:22px;height:22px;border-radius:50%;background:#fff;opacity:0;animation:puff 2.4s ease-out infinite}
+.puff.p2{animation-delay:.8s}.puff.p3{animation-delay:1.6s}
+@keyframes puff{0%{opacity:.85;transform:translate(0,0) scale(.6)}100%{opacity:0;transform:translate(-120px,-70px) scale(2.6)}}
+.onboard{padding:14px clamp(22px,3vw,34px) clamp(20px,3vw,28px);color:#f3d9e3!important;font-size:.88rem}
+@media (max-width:700px){.train{right:-40px;transform-origin:100% 100%}.train{scale:.78}.coach{width:170px}}
+@media (prefers-reduced-motion:reduce){.rl,.rtrack::before,.train,.bcar i,.coach i,.engine i,.puff{animation:none!important}}
+
+/* journal: a quiet study corner */
+.lc.journal{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:center}
+.study{position:relative;height:clamp(300px,30vw,360px);border-radius:20px;overflow:hidden;background:linear-gradient(180deg,#fbe9d7,#f6dcc4)}
+.study .wall{position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgb(255 255 255 / .18) 0 2px,transparent 2px 40px)}
+.shelf3{position:absolute;left:6%;right:6%;top:8%;display:grid;gap:14px}
+.shelf3 .row{display:flex;align-items:flex-end;gap:3px;height:58px;padding:0 6px;border-bottom:8px solid #8a5a3b;box-shadow:0 6px 0 -2px #6e4429;overflow:hidden}
+.shelf3 .row span{flex:none;width:var(--w);height:var(--h);background:var(--c);border-radius:2px 2px 0 0;box-shadow:inset -3px 0 0 rgb(0 0 0 / .15),inset 2px 0 0 rgb(255 255 255 / .2)}
+.shelf3 .row span.tilt{transform:rotate(-12deg);transform-origin:0 100%;margin-left:6px}
+.lamp2{position:absolute;right:12%;bottom:22%;width:60px;height:90px}
+.lamp2 .arm{position:absolute;left:28px;bottom:0;width:5px;height:70px;background:#3b1327;transform:rotate(12deg);transform-origin:bottom}
+.lamp2 .shade{position:absolute;left:4px;top:0;width:46px;height:28px;background:#ff4f93;border-radius:24px 24px 4px 4px;transform:rotate(-18deg)}
+.lamp2 .glow{position:absolute;left:-30px;top:24px;width:120px;height:110px;background:radial-gradient(ellipse at 50% 0,rgb(255 230 160 / .75),transparent 70%);animation:glow 4s ease-in-out infinite}
+@keyframes glow{50%{opacity:.7}}
+.study canvas.mini{position:absolute;left:50%;bottom:15%;transform:translateX(-56%);width:min(240px,64%);margin:0;z-index:1}
+.desk{position:absolute;left:0;right:0;bottom:0;height:22%;z-index:2;background:linear-gradient(180deg,#b07a58 0 14px,#8a5a3b 14px);box-shadow:0 -4px 0 #c99273 inset}
+.desk .mug{position:absolute;left:14%;top:-30px;width:28px;height:32px;background:#fff;border-radius:4px 4px 10px 10px;box-shadow:inset 0 -6px 0 #f6b3c7}
+.desk .mug::after{content:"";position:absolute;right:-10px;top:8px;width:10px;height:14px;border:3px solid #fff;border-left:0;border-radius:0 8px 8px 0}
+.desk .mug b{position:absolute;left:8px;bottom:34px;width:4px;height:18px;border-radius:4px;background:rgb(255 255 255 / .8);animation:steam 2.6s ease-in-out infinite}
+.desk .mug b+b{left:16px;animation-delay:1.2s}
+@keyframes steam{0%{opacity:0;transform:translateY(6px) scaleY(.6)}40%{opacity:.8}100%{opacity:0;transform:translateY(-14px) scaleY(1.2) skewX(10deg)}}
+.desk .plant{position:absolute;right:8%;top:-40px;width:30px;height:24px;background:#d9734a;border-radius:2px 2px 8px 8px}
+.desk .plant::before{content:"";position:absolute;left:-6px;bottom:20px;width:42px;height:32px;background:radial-gradient(circle at 30% 60%,#5f9e54 0 9px,transparent 10px),radial-gradient(circle at 60% 30%,#6fb563 0 10px,transparent 11px),radial-gradient(circle at 80% 70%,#4f8a46 0 8px,transparent 9px)}
+.desk .pile{position:absolute;right:26%;top:-26px;display:grid;gap:2px}
+.desk .pile i{display:block;width:52px;height:8px;border-radius:2px;background:#6a3d9a}.desk .pile i:nth-child(2){width:46px;background:#e0287a;margin-left:4px}.desk .pile i:nth-child(3){background:#1f3a5f}
+.jcopy{padding-left:8px}
+@media (max-width:900px){.lc.journal{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.lamp2 .glow,.desk .mug b{animation:none}}
+
+/* languages: landmark graphics instead of flags */
+.langstage{position:relative;display:grid;justify-items:center}
+.langstage .lm{position:absolute;left:50%;bottom:6%;width:min(300px,96%);transform:translateX(-50%);opacity:0;transition:opacity .5s,transform .5s}
+.langstage .ic{position:absolute;width:62px;height:auto;opacity:0;transition:opacity .5s,transform .5s;animation:bobic 3s ease-in-out infinite}
+.langstage .ic-de{right:6%;top:30%}.langstage .ic-es{left:6%;top:32%}
+@keyframes bobic{50%{translate:0 -8px;rotate:6deg}}
+.langstage[data-l="de"] .lm-de,.langstage[data-l="es"] .lm-es{opacity:.32;transform:translateX(-50%) translateY(0)}
+.langstage[data-l="de"] .ic-de,.langstage[data-l="es"] .ic-es{opacity:1}
+.langstage .say,.langstage canvas{position:relative;z-index:1}
+.lc.lang{background-image:none}
+.lc.lang .post{display:none}
+@media (prefers-reduced-motion:reduce){.langstage .ic{animation:none}}
+
 /* reel dialog */
 dialog{border:0;padding:0;background:transparent;max-width:min(92vw,1000px);width:100%}
 dialog::backdrop{background:rgb(36 21 28 / .8)}
@@ -1013,40 +1101,55 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
         </article>
 
         <article class="lc books" data-pose="read">
-          <div class="cabin" aria-hidden="true">
-            <div class="window"><span class="sun"></span><div class="layer hills"></div><div class="layer fields"></div><div class="layer poles"></div></div>
-            <div class="seat"></div>
-            <canvas class="mini rattle" data-pose="read"></canvas>
-          </div>
-          <div class="books-copy">
+          <div class="books-head">
             <span class="tag">Reading</span>
             <span class="ticketline">Window seat · one whole book</span>
             <h3>Give me a train journey and I'll finish a book</h3>
-            <p>I'm a bookworm. On a train I read cover to cover. These are some of the books that have kept me company.</p>
-            <div class="rail" aria-label="Books I've read"><div class="cars"><span class="car eng">Amisha's<br>reading express</span><span class="car" tabindex="0" style="--c:#2b2b3a">The Silent Patient</span><span class="car" tabindex="0" style="--c:#8c1d2e">Crime and Punishment</span><span class="car" tabindex="0" style="--c:#b8860b">The Power of Your Subconscious Mind</span><span class="car" tabindex="0" style="--c:#ff2e88">Do It Today</span><span class="car" tabindex="0" style="--c:#1f3a5f">1984</span><span class="car" tabindex="0" style="--c:#6a3d9a">Harry Potter</span><span class="car" tabindex="0" style="--c:#4b5d3a">Kargil</span></div></div>
+            <p>I'm a bookworm. On a train I read cover to cover. Hop on the reading express: every coach is a book that's kept me company.</p>
           </div>
+          <div class="ride" aria-label="Animated train carrying Amisha and her books: The Silent Patient, Crime and Punishment, The Power of Your Subconscious Mind, Do It Today, 1984, Harry Potter and Kargil">
+            <span class="rsun" aria-hidden="true"></span>
+            <div class="rl r-clouds" aria-hidden="true"></div>
+            <div class="rl r-hills" aria-hidden="true"></div>
+            <div class="rl r-trees" aria-hidden="true"></div>
+            <div class="rl r-poles" aria-hidden="true"></div>
+            <div class="rtrack" aria-hidden="true"></div>
+            <div class="train">
+              <div class="bcar" style="--c:#4b5d3a"><span>Kargil</span><i></i><i></i></div><div class="bcar" style="--c:#6a3d9a"><span>Harry Potter</span><i></i><i></i></div><div class="bcar" style="--c:#1f3a5f"><span>1984</span><i></i><i></i></div><div class="bcar" style="--c:#e0287a"><span>Do It Today</span><i></i><i></i></div><div class="bcar" style="--c:#b8860b"><span>The Power of Your Subconscious Mind</span><i></i><i></i></div><div class="bcar" style="--c:#8c1d2e"><span>Crime and Punishment</span><i></i><i></i></div><div class="bcar" style="--c:#2b2b3a"><span>The Silent Patient</span><i></i><i></i></div>
+              <div class="coach"><div class="cwin"><canvas class="mini" data-pose="read" aria-hidden="true"></canvas></div><b>Amisha</b><i></i><i></i></div>
+              <div class="engine" aria-hidden="true"><span class="chim"></span><span class="puff p1"></span><span class="puff p2"></span><span class="puff p3"></span><span class="cab"></span><span class="nose"></span><span class="lamp"></span><i></i><i></i><i></i></div>
+            </div>
+          </div>
+          <p class="onboard">On board: The Silent Patient · Crime and Punishment · The Power of Your Subconscious Mind · Do It Today · 1984 · Harry Potter · Kargil</p>
         </article>
 
         <article class="lc journal" data-pose="journal">
-          <div class="scene2">
-            <canvas class="mini" data-pose="journal" aria-hidden="true"></canvas>
-            <div style="padding-left:24px">
-              <span class="tag">Journaling</span>
-              <h3 style="margin-top:8px">From my journal</h3>
-              <p class="jsub">Two lines I keep coming back to.</p>
-              <div class="entries">
-                <p class="entry2"><span class="jdate">on the hard days</span><span class="ink2">I am stronger than this.</span></p>
-                <p class="entry2"><span class="jdate">on the scary days</span><span class="ink2">What if it all works out?</span></p>
-              </div>
-              <span class="stamp2">Dear diary</span>
+          <div class="study" aria-hidden="true">
+            <div class="wall"></div>
+            <div class="shelf3"><div class="row" id="shelfA"></div><div class="row" id="shelfB"></div></div>
+            <div class="lamp2"><span class="arm"></span><span class="shade"></span><span class="glow"></span></div>
+            <canvas class="mini" data-pose="journal"></canvas>
+            <div class="desk"><span class="mug"><b></b><b></b></span><span class="plant"></span><span class="pile"><i></i><i></i><i></i></span></div>
+          </div>
+          <div class="jcopy">
+            <span class="tag">Journaling</span>
+            <h3 style="margin-top:8px">From my journal</h3>
+            <p class="jsub">Two lines I keep coming back to.</p>
+            <div class="entries">
+              <p class="entry2"><span class="jdate">on the hard days</span><span class="ink2">I am stronger than this.</span></p>
+              <p class="entry2"><span class="jdate">on the scary days</span><span class="ink2">What if it all works out?</span></p>
             </div>
+            <span class="stamp2">Dear diary</span>
           </div>
         </article>
 
         <article class="lc lang" data-pose="lang">
-          <div class="post" aria-hidden="true"><i class="de"></i><i class="es"></i></div>
           <div class="scene2">
-            <div>
+            <div class="langstage" id="langStage" data-l="de">
+              <svg viewBox="0 0 220 150" class="lm lm-de" aria-hidden="true"><g fill="#3b2a1e" opacity=".85"><rect x="20" y="132" width="180" height="10" rx="2"/><rect x="26" y="44" width="168" height="16" rx="2"/><rect x="34" y="30" width="152" height="16" rx="2"/><path d="M95 30 l8 -14 h14 l8 14z"/><circle cx="110" cy="12" r="5"/><rect x="32" y="60" width="12" height="72" rx="2"/><rect x="62" y="60" width="12" height="72" rx="2"/><rect x="92" y="60" width="12" height="72" rx="2"/><rect x="122" y="60" width="12" height="72" rx="2"/><rect x="152" y="60" width="12" height="72" rx="2"/><rect x="182" y="60" width="12" height="72" rx="2"/></g><g fill="#c78a3b"><rect x="26" y="56" width="168" height="4"/></g></svg>
+<svg viewBox="0 0 100 90" class="ic ic-de" aria-hidden="true"><path d="M50 78 C 18 78 6 52 20 34 C 32 18 52 26 50 44 C 48 26 68 18 80 34 C 94 52 82 78 50 78 Z M50 44 L 30 70 M50 44 L 70 70" fill="none" stroke="#a8642a" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><g fill="#fff"><circle cx="30" cy="40" r="2"/><circle cx="70" cy="40" r="2"/><circle cx="50" cy="70" r="2"/><circle cx="24" cy="58" r="2"/><circle cx="76" cy="58" r="2"/></g></svg>
+              <svg viewBox="0 0 220 150" class="lm lm-es" aria-hidden="true"><g fill="#7a3b2e" opacity=".85"><rect x="18" y="128" width="184" height="14" rx="3"/><path d="M30 128 V 80 Q 37 66 44 80 V 128 Z"/><circle cx="37" cy="64" r="3.5"/><path d="M50 128 V 60 Q 57 46 64 60 V 128 Z"/><circle cx="57" cy="44" r="3.5"/><path d="M70 128 V 44 Q 77 30 84 44 V 128 Z"/><circle cx="77" cy="28" r="3.5"/><path d="M92 128 V 28 Q 99 14 106 28 V 128 Z"/><circle cx="99" cy="12" r="3.5"/><path d="M114 128 V 28 Q 121 14 128 28 V 128 Z"/><circle cx="121" cy="12" r="3.5"/><path d="M136 128 V 44 Q 143 30 150 44 V 128 Z"/><circle cx="143" cy="28" r="3.5"/><path d="M156 128 V 60 Q 163 46 170 60 V 128 Z"/><circle cx="163" cy="44" r="3.5"/><path d="M176 128 V 80 Q 183 66 190 80 V 128 Z"/><circle cx="183" cy="64" r="3.5"/><rect x="60" y="100" width="100" height="28"/></g><g fill="#f3c26b"><rect x="55" y="76" width="4" height="8" rx="2"/><rect x="75" y="60" width="4" height="8" rx="2"/><rect x="97" y="44" width="4" height="8" rx="2"/><rect x="119" y="44" width="4" height="8" rx="2"/><rect x="141" y="60" width="4" height="8" rx="2"/><rect x="161" y="76" width="4" height="8" rx="2"/></g></svg>
+<svg viewBox="0 0 100 70" class="ic ic-es" aria-hidden="true"><path d="M50 64 L 6 26 A 58 58 0 0 1 94 26 Z" fill="#c8102e"/><path d="M50 64 L 14 22 A 50 50 0 0 1 86 22 Z" fill="#e8474f"/><line x1="50" y1="64" x2="88.6435309248245" y2="29.205208469339368" stroke="#ffc400" stroke-width="2"/><line x1="50" y1="64" x2="80.5648331192086" y2="21.931116292502736" stroke="#ffc400" stroke-width="2"/><line x1="50" y1="64" x2="71.1503054399416" y2="16.495636202584755" stroke="#ffc400" stroke-width="2"/><line x1="50" y1="64" x2="60.81140792252349" y2="13.136324761842111" stroke="#ffc400" stroke-width="2"/><line x1="50" y1="64" x2="50.0" y2="12.0" stroke="#ffc400" stroke-width="2"/><line x1="50" y1="64" x2="39.188592077476514" y2="13.136324761842104" stroke="#ffc400" stroke-width="2"/><line x1="50" y1="64" x2="28.849694560058385" y2="16.495636202584755" stroke="#ffc400" stroke-width="2"/><line x1="50" y1="64" x2="19.435166880791403" y2="21.931116292502736" stroke="#ffc400" stroke-width="2"/><line x1="50" y1="64" x2="11.35646907517551" y2="29.205208469339368" stroke="#ffc400" stroke-width="2"/><circle cx="50" cy="62" r="5" fill="#ffc400"/></svg>
               <div class="say" id="sayBubble" aria-hidden="true">Hallo!</div>
               <canvas class="mini" data-pose="lang" aria-hidden="true"></canvas>
             </div>
@@ -1188,7 +1291,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
     if(p==='gym'){var l=(Math.sin(t*2.4)+1)/2;o.Lz=2.85;o.Rz=-2.85;o.Le=.15+1.25*(1-l);o.Re=-.15-1.25*(1-l);o.lift=l}
     if(p==='guitar'){var st=performance.now()<strumUntil;o.Lz=.5;o.Lx=-1.15;o.Le=-.6;o.Rz=-.35;o.Rx=-.75;o.Re=1.1+Math.sin(t*(st?22:9))*(st?.32:.14);o.hx=.12;o.tilt=Math.sin(t*2)*.06}
     if(p==='read'){o.Lz=.25;o.Lx=-1.05;o.Le=-1.0;o.Rz=-.25;o.Rx=-1.05;o.Re=1.0;o.hx=.36;o.sit=1}
-    if(p==='journal'){o.Lz=.3;o.Lx=-.9;o.Le=-1.15;o.Rz=-.15;o.Rx=-1.0+Math.sin(t*5)*.06;o.Re=.85+Math.sin(t*9)*.1;o.hx=.3}
+    if(p==='journal'){o.Lz=.3;o.Lx=-.9;o.Le=-1.15;o.Rz=-.15;o.Rx=-1.0+Math.sin(t*5)*.06;o.Re=.85+Math.sin(t*9)*.1;o.hx=.3;o.sit=1}
     if(p==='lang'){if(window.miniTalking){o.Lz=.9;o.Lx=-.6;o.Le=.6+Math.sin(t*3)*.25;o.Rz=-.9;o.Rx=-.6;o.Re=-.6-Math.sin(t*3.4)*.25;o.tilt=Math.sin(t*3)*.1;o.hx=-.05+Math.sin(t*6)*.04}else{o.Lz=2.55;o.Le=.35+Math.sin(t*7)*.45;o.Rz=-.2;o.tilt=Math.sin(t*2.2)*.08}}
     outfit(p==='gym');
     L.sh.rotation.set(o.Lx,0,o.Lz);L.el.rotation.set(0,0,o.Le);R.sh.rotation.set(o.Rx,0,o.Rz);R.el.rotation.set(0,0,o.Re);
@@ -1260,7 +1363,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
   var intro=document.getElementById('intro'),tabs=[document.getElementById('tab-de'),document.getElementById('tab-es')];
   function show(k){var d=intros[k];intro.setAttribute('lang',d.l);
     intro.innerHTML=d.t.split(' ').map(function(w,i){return '<span class="w" style="animation-delay:'+(i*40)+'ms">'+w+'</span>'}).join(' ')+'<small lang="en">'+d.e+'</small>';
-    tabs.forEach(function(t){t.setAttribute('aria-selected',t.id==='tab-'+k)});var sb=document.getElementById('sayBubble');if(sb)sb.textContent=k==='de'?'Hallo! Ich heiße Amisha.':'¡Hola! Me llamo Amisha.'}
+    tabs.forEach(function(t){t.setAttribute('aria-selected',t.id==='tab-'+k)});var ls=document.getElementById('langStage');if(ls)ls.setAttribute('data-l',k);var sb=document.getElementById('sayBubble');if(sb)sb.textContent=k==='de'?'Hallo! Ich heiße Amisha.':'¡Hola! Me llamo Amisha.'}
   tabs.forEach(function(t){t.addEventListener('click',function(){show(t.id.slice(4))})});
   show('de');
   // speak the intro aloud in German or Spanish, with mini-me lip-syncing
@@ -1320,6 +1423,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
   // journal lines write themselves when the card comes into view
   (function(){var j=document.querySelector('.lc.journal');if(!j||!('IntersectionObserver' in window))return;
     var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){j.classList.remove('writing');void j.offsetWidth;j.classList.add('writing')}})},{threshold:.5});o.observe(j)})();
+
+  // fill the study shelves with lots of books
+  (function(){var cols=['#8c1d2e','#1f3a5f','#6a3d9a','#e0287a','#b8860b','#2b2b3a','#4b5d3a','#c86a3c','#9e2650','#3a6b6b','#d6a2b8'];var seed=7;function rnd(){seed=(seed*9301+49297)%233280;return seed/233280}
+    ['shelfA','shelfB'].forEach(function(id){var r=document.getElementById(id);if(!r)return;var h='';for(var i=0;i<34;i++){var w=8+Math.round(rnd()*10),hh=30+Math.round(rnd()*24),c=cols[Math.floor(rnd()*cols.length)];h+='<span'+(rnd()<.06?' class="tilt"':'')+' style="--w:'+w+'px;--h:'+hh+'px;--c:'+c+'"></span>'}r.innerHTML=h})})();
 
   // live Jaipur clock
   var clk=document.getElementById('clk');
