@@ -1,4 +1,6 @@
-# Amisha Sharma — Portfolio
+# Amisha Sharma · Portfolio
+
+**Live site:** [amishasharma2220.github.io](https://amishasharma2220.github.io)
 
 Personal portfolio: projects (CampusConnect, HEATSHIELD, FlavorLens, Kulfiwala), research, skills, experience and contact.
 
