@@ -104,6 +104,10 @@ html{scrollbar-color:#ff2e88 var(--blush)}
 ::-webkit-scrollbar-thumb{background:#ff2e88;border-radius:999px;border:2px solid var(--blush)}
 .progress{position:fixed;left:0;top:env(safe-area-inset-top,0px);height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:#ff2e88;z-index:11}
 
+/* Motion layer: scroll progress bar + split headings */
+.sprog{position:fixed;left:0;top:0;right:0;height:4px;background:linear-gradient(90deg,#ff5fa2,#ff2d87);transform-origin:0 50%;transform:scaleX(0);z-index:9999;pointer-events:none;border-radius:0 4px 4px 0}
+.mw{display:inline-block;will-change:transform}
+@media (prefers-reduced-motion:reduce){.sprog{display:none}}
 /* projects reveal one by one while scrolling (only cards still below the fold start hidden) */
 .reveal{transition:opacity .45s ease,transform .75s cubic-bezier(.34,1.56,.64,1);transform-origin:50% 80%}
 .reveal.pre{opacity:0;transform:translateY(90px) scale(.82)}
@@ -1613,5 +1617,59 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
 })();
 </script>
 
+
+<script src="https://cdn.jsdelivr.net/npm/motion@12.23.12/dist/motion.js"></script>
+<script>
+// Motion (motion.dev) layer. Everything here is optional: if the library fails to load
+// or the visitor prefers reduced motion, the CSS versions of these effects stay in place.
+(function(){
+  var M=window.Motion; if(!M||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var animate=M.animate,inView=M.inView,stagger=M.stagger,scroll=M.scroll,hover=M.hover,press=M.press;
+  var springy={type:'spring',stiffness:260,damping:18};
+
+  // 1. hot pink reading-progress bar
+  var bar=document.createElement('div');bar.className='sprog';bar.setAttribute('aria-hidden','true');document.body.appendChild(bar);
+  scroll(animate(bar,{scaleX:[0,1]},{ease:'linear'}));
+
+  // split a heading's text into word spans (keeps <em> and screen-reader text intact)
+  function split(el){
+    if(el.dataset.split)return [];el.dataset.split='1';el.setAttribute('aria-label',el.textContent.trim());
+    var out=[];
+    (function walk(n){[].slice.call(n.childNodes).forEach(function(c){
+      if(c.nodeType===3){var parts=c.textContent.split(/(\s+)/),f=document.createDocumentFragment();
+        parts.forEach(function(p){if(!p)return;if(/^\s+$/.test(p)){f.appendChild(document.createTextNode(p));return}
+          var s=document.createElement('span');s.className='mw';s.setAttribute('aria-hidden','true');s.textContent=p;f.appendChild(s);out.push(s)});
+        n.replaceChild(f,c)}
+      else if(c.nodeType===1&&!c.classList.contains('sr'))walk(c)})})(el);
+    return out}
+
+  // 2. hero: name springs in word by word, then the rest follows
+  var h1=document.getElementById('heroTitle');
+  if(h1){var w=split(h1);animate(w,{opacity:[0,1],y:[48,0],rotate:[6,0]},{delay:stagger(.09,{startDelay:.15}),type:'spring',stiffness:220,damping:16});
+    var rest=document.querySelectorAll('.hero .role,.hero .what,.hero .btns,.hero .uni');
+    animate(rest,{opacity:[0,1],y:[18,0]},{delay:stagger(.08,{startDelay:.45}),duration:.6,ease:[.22,1,.36,1]})}
+
+  // 3. section headings wave in when they reach the screen
+  [].slice.call(document.querySelectorAll('main h2, section h2')).forEach(function(h){
+    if(h.closest('.hero'))return;
+    var w=split(h);if(!w.length)return;
+    w.forEach(function(s){s.style.opacity=0});
+    inView(h,function(){animate(w,{opacity:[0,1],y:[30,0]},{delay:stagger(.06),type:'spring',stiffness:240,damping:18})},{amount:.6})});
+
+  // 4. project cards pop up one by one with a real spring (replaces the CSS version)
+  var cards=[].slice.call(document.querySelectorAll('#projects .prj, #projects .wcard'));
+  cards.forEach(function(c){c.classList.remove('reveal','pre');c.style.transitionDelay='';
+    if(c.getBoundingClientRect().top>innerHeight*.9){c.style.opacity=0;
+      inView(c,function(){var i=cards.filter(function(x){return x.dataset.mq}).length;c.dataset.mq='1';
+        animate(c,{opacity:[0,1],y:[90,0],scale:[.82,1]},{type:'spring',stiffness:180,damping:15,delay:(i%3)*.12});
+        setTimeout(function(){cards.forEach(function(x){delete x.dataset.mq})},400)},{amount:.25,margin:'0px 0px -12% 0px'})}});
+
+  // 5. buttons squish when pressed and lift on hover
+  if(hover&&press){
+    hover('.btn',function(el){animate(el,{scale:1.05},springy);return function(){animate(el,{scale:1},springy)}});
+    press('.btn',function(el){animate(el,{scale:.94},{type:'spring',stiffness:500,damping:20});return function(){animate(el,{scale:1},springy)}});
+  }
+})();
+</script>
 </body>
 </html>
